@@ -8,6 +8,7 @@ Using the g++ compiler
 
 ## Compile and execute
 ```
-$ g++ -c main.cpp
-$ g++ main.o -o **main.o** -lsfml-graphics -lsfml-window -lsfml-system
+$: g++ -c main.cpp
+$: g++ main.o -o Demo -lsfml-graphics -lsfml-window -lsfml-system
+$: ./Demo
 ```
