@@ -3,8 +3,7 @@
 Develop the diferent examples trought the book using
 `c++` and `Vim` of course the SFML library
 
-Everything is tested in **GNU/Linux**
-Using the g++ compiler
+Everything is tested in **GNU/Linux** Using the **g++** compiler
 
 ## Compile and execute
 ```
