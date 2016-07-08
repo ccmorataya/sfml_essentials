@@ -9,7 +9,7 @@ class Game
 
 	private:
 		void	processEvents();
-		void	update();
+		void	update(sf::Time deltaTime);
 		void	render();
 		sf::RenderWindow mWindow;
 		sf::CircleShape mPlayer;
@@ -17,6 +17,7 @@ class Game
 		bool	mIsMovingDown;
 		bool	mIsMovingRight;
 		bool	mIsMovingLeft;
+		float	PlayerSpeed;
 };
 
 Game::Game()
@@ -29,10 +30,12 @@ Game::Game()
 
 void Game::run()
 {
+	sf::Clock clock;
 	while (mWindow.isOpen())
 	{
+		sf::Time deltaTime = clock.restart();
 		processEvents();
-		update();
+		update(deltaTime);
 		render();
 	}
 }
@@ -75,23 +78,23 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 	}
 }
 
-void Game::update()
+void Game::update(sf::Time deltaTime)
 {
 	sf::Vector2f movement(0.f, 0.f);
 	if (mIsMovingUp) {
-		movement.y -= 1.f;
+		movement.y -= PlayerSpeed;
 	}
 	if (mIsMovingDown) {
-		movement.y += 1.f;
+		movement.y += PlayerSpeed;
 	}
 	if (mIsMovingRight)	{
-		movement.x += 1.f;
+		movement.x += PlayerSpeed;
 	}
 	if (mIsMovingLeft){
-		movement.x -+ 1.f;
+		movement.x -+ PlayerSpeed;
 	}
 
-	mPlayer.move(movement);
+	mPlayer.move(movement * deltaTime.asSeconds());
 }
 
 void Game::render()
