@@ -12,15 +12,14 @@ class Game
 		void	render();
 		sf::RenderWindow mWindow;
 		sf::CircleShape mPlayer;
-		sf::CircleShape mSqare;
 };
 
 Game::Game()
-	:mWindow(sf::VideoMode(640, 480), "SFML modularization"), mPlayer(), mSqare()
+	:mWindow(sf::VideoMode(640, 480), "SFML modularization"), mPlayer()
 {
-	mSqare.setRadius(40.f);
-	mSqare.setPosition(100.f, 100.f);
-	mSqare.setFillColor(sf::Color::Red);
+	mPlayer.setRadius(40.f);
+	mPlayer.setPosition(100.f, 100.f);
+	mPlayer.setFillColor(sf::Color::Red);
 }
 
 void Game::run()
@@ -48,7 +47,7 @@ void Game::update(){}
 void Game::render()
 {
 	mWindow.clear();
-	mWindow.draw(mSqare);
+	mWindow.draw(mPlayer);
 	mWindow.display();
 }
 
