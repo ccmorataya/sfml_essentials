@@ -1,28 +1,26 @@
 #include <SFML/Graphics.hpp>
 
+void initShape(sf::RectangleShape& shape, sf::Vector2f const& position, sf::Color const& color)
+{
+	shape.setFillColor(color);
+	shape.setPosition(position);
+	shape.setOrigin(shape.getSize() * 0.5f);	//the center of the shape
+}
+
 int main()
 {
-	sf::RenderWindow window (sf::VideoMode(300,200), "title");
+	sf::RenderWindow window (sf::VideoMode(480, 180), "Squares");
 	window.setFramerateLimit(60);
-	sf::String buffer;
-	bool moving = false;
 
-	sf::CircleShape circleShape(50);
-	circleShape.setFillColor(sf::Color::Blue);
-	circleShape.setOutlineColor(sf::Color::Black);
-	circleShape.setOutlineThickness(3);
+	sf::Vector2f startPos = sf::Vector2f(50, 50);
+	sf::RectangleShape playerRect(sf::Vector2f(50, 50));
+	initShape(playerRect, startPos, sf::Color::Green);
 
-	sf::RectangleShape rectShape(sf::Vector2f(50,50));
-	rectShape.setFillColor(sf::Color::Red);
-	rectShape.setOrigin(sf::Vector2f(25, 25));
-	rectShape.setPosition(sf::Vector2f(50,50));
+	sf::RectangleShape targetRect(sf::Vector2f(50, 50));
+	initShape(targetRect, sf::Vector2f(400,50), sf::Color::Blue);
 
-	sf::ConvexShape triangle;
-	triangle.setPointCount(3);
-	triangle.setPoint(0, sf::Vector2f(100,0));
-	triangle.setPoint(1, sf::Vector2f(100,100));
-	triangle.setPoint(2, sf::Vector2f(0,100));
-	triangle.setFillColor(sf::Color::Green);
+	sf::RectangleShape badRect(sf::Vector2f(50, 100));
+	initShape(badRect, sf::Vector2f(250, 50), sf::Color::Red);
 
 	while (window.isOpen())
 	{
@@ -32,24 +30,37 @@ int main()
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-				moving = true;
-			}
-			if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right) {
-				moving = false;
-			}
+			//if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+			//	moving = true;
+			//}
+			//if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right) {
+			//	moving = false;
+			//}
 		}
 
 		//update frame
-		if (moving) {
-			rectShape.rotate(1.5f);
-			rectShape.move(sf::Vector2f(1, 0));
-		}				
+		playerRect.move(1,0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			playerRect.move(0,1);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			playerRect.move(0,-1);
+		}
+
+		if (playerRect.getGlobalBounds().intersects(targetRect.getGlobalBounds())) {
+			window.close();
+		}
+
+		if (playerRect.getGlobalBounds().intersects(badRect.getGlobalBounds())) {
+			playerRect.setPosition(startPos);
+		}
 		//render cycle
 		window.clear(sf::Color::White);
 
 		//window.draw(circleShape);
-		window.draw(rectShape);
+		window.draw(playerRect);
+		window.draw(badRect);
+		window.draw(targetRect);
 		//window.draw(triangle);
 
 			//render objects
@@ -58,3 +69,4 @@ int main()
 
 	return 0;
 }
+
