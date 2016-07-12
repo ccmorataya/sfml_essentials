@@ -15,10 +15,11 @@ $ ./Demo
 ### Simplify the compiling
 
 Add to the `.bashrc` or `.zshrc` or whatever shell RC file
-to simplify the line of 
-`$ g++ main.o -o Demo -lsfml-graphics -lsfml-window -lsfml-system`
+to simplify the line of:
 
-**
+```$ g++ main.o -o Demo -lsfml-graphics -lsfml-window -lsfml-system```
+
+```bash
 function sfml++()
 {
 	if [ -n "$1" ]
@@ -26,4 +27,4 @@ function sfml++()
 		g++ "$1" -lsfml-graphics -lsfml-window -lsfml-system
 	fi
 }
-**
+```
