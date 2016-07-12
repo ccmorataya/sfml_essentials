@@ -5,6 +5,7 @@ int main()
 	sf::RenderWindow window (sf::VideoMode(300,200), "title");
 	window.setFramerateLimit(60);
 	sf::String buffer;
+	bool moving = false;
 
 	sf::CircleShape circleShape(50);
 	circleShape.setFillColor(sf::Color::Blue);
@@ -31,12 +32,19 @@ int main()
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+				moving = true;
+			}
+			if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right) {
+				moving = false;
+			}
 		}
 
 		//update frame
-		rectShape.rotate(1.5f);
-		rectShape.move(sf::Vector2f(1, 0));
-		
+		if (moving) {
+			rectShape.rotate(1.5f);
+			rectShape.move(sf::Vector2f(1, 0));
+		}				
 		//render cycle
 		window.clear(sf::Color::White);
 
