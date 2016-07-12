@@ -38,9 +38,9 @@ int main()
 		//render cycle
 		window.clear(sf::Color::White);
 
-		window.draw(circleShape);
+		//window.draw(circleShape);
 		window.draw(rectShape);
-		window.draw(triangle);
+		//window.draw(triangle);
 
 			//render objects
 			window.display();
