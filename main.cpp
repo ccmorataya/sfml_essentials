@@ -3,6 +3,7 @@
 int main()
 {
 	sf::Window window (sf::VideoMode(300,200), "title");
+	sf::String buffer;
 
 	while (window.isOpen())
 	{
@@ -19,14 +20,13 @@ int main()
 						window.setTitle("Space");
 					}
 					break;
+				case sf::Event::TextEntered:
+					buffer += event.text.unicode;
+					break;
 				case sf::Event::KeyReleased:
-					if (event.key.code == sf::Keyboard::Space)
-					{
-						window.setTitle("Releases");
-					}
-					else if (event.key.code == sf::Keyboard::Escape)
-					{
-						window.close();
+					if (event.key.code == sf::Keyboard::Return) {
+						window.setTitle(buffer);
+						buffer.clear();
 					}
 					break;
 				default:
