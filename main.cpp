@@ -18,7 +18,7 @@ int main()
 		//update frame
 		
 		//render cicle
-		window.clear(sf::Color::Black);
+		window.clear(sf::Color::White);
 
 		//render objects
 		window.display();
