@@ -1,8 +1,8 @@
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 int main()
 {
-	sf::Window window (sf::VideoMode(300,200), "title");
+	sf::RenderWindow window (sf::VideoMode(300,200), "title");
 	sf::String buffer;
 
 	while (window.isOpen())
@@ -10,36 +10,18 @@ int main()
 		sf::Event event;
 		while(window.pollEvent(event))
 		{
-			switch (event.type) {
-				case sf::Event::Closed:
-					window.close();
-					break;
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Space)
-					{
-						window.setTitle("Space");
-					}
-					break;
-				case sf::Event::TextEntered:
-					buffer += event.text.unicode;
-					break;
-				case sf::Event::KeyReleased:
-					if (event.key.code == sf::Keyboard::Return) {
-						window.setTitle(buffer);
-						buffer.clear();
-					}
-					else if (event.key.code == sf::Keyboard::Escape) {
-						window.close();
-					}
-					break;
-				default:
-					break;
+			if (event.type == sf::Event::Closed) {
+				window.close();
 			}
 		}
 
 		//update frame
 		
-		//render frame
+		//render cicle
+		window.clear(sf::Color::Black);
+
+		//render objects
+		window.display();
 	}
 
 	return 0;
