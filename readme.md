@@ -15,9 +15,7 @@ $ ./Demo
 ### Simplify the compiling
 
 Add to the `.bashrc` or `.zshrc` or whatever shell RC file
-to simplify the line of:
-
-```$ g++ main.o -o Demo -lsfml-graphics -lsfml-window -lsfml-system```
+to simplify the compile process
 
 ```bash
 function sfml++()
@@ -27,4 +25,20 @@ function sfml++()
 		g++ "$1" -lsfml-graphics -lsfml-window -lsfml-system
 	fi
 }
+```
+
+Now you can use the following command 
+
+`$ sfml++ main.o`
+
+instead the large
+
+```$ g++ main.o -o Demo -lsfml-graphics -lsfml-window -lsfml-system```
+
+To get a cleaner compiling and execution process:
+
+```
+$ g++ -c main.cpp
+$ sfml++ main.o
+$ ./a.out
 ```
