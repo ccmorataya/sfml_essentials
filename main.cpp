@@ -12,6 +12,9 @@ int main()
 
 	sf::RectangleShape rectShape(sf::Vector2f(50,50));
 	rectShape.setFillColor(sf::Color::Red);
+	rectShape.setPosition(sf::Vector2f(50,50));
+	rectShape.setRotation(30);
+	rectShape.setScale(sf::Vector2f(2,1));
 
 	sf::ConvexShape triangle;
 	triangle.setPointCount(3);
