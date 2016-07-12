@@ -28,6 +28,9 @@ int main()
 						window.setTitle(buffer);
 						buffer.clear();
 					}
+					else if (event.key.code == sf::Keyboard::Escape) {
+						window.close();
+					}
 					break;
 				default:
 					break;
