@@ -3,6 +3,7 @@
 int main()
 {
 	sf::RenderWindow window (sf::VideoMode(300,200), "title");
+	window.setFramerateLimit(60);
 	sf::String buffer;
 
 	sf::CircleShape circleShape(50);
@@ -12,9 +13,8 @@ int main()
 
 	sf::RectangleShape rectShape(sf::Vector2f(50,50));
 	rectShape.setFillColor(sf::Color::Red);
+	rectShape.setOrigin(sf::Vector2f(25, 25));
 	rectShape.setPosition(sf::Vector2f(50,50));
-	rectShape.setRotation(30);
-	rectShape.setScale(sf::Vector2f(2,1));
 
 	sf::ConvexShape triangle;
 	triangle.setPointCount(3);
@@ -34,6 +34,8 @@ int main()
 		}
 
 		//update frame
+		rectShape.rotate(1.5f);
+		rectShape.move(sf::Vector2f(1, 0));
 		
 		//render cycle
 		window.clear(sf::Color::White);
