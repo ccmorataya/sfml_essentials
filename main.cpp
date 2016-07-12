@@ -13,6 +13,13 @@ int main()
 	sf::RectangleShape rectShape(sf::Vector2f(50,50));
 	rectShape.setFillColor(sf::Color::Red);
 
+	sf::ConvexShape triangle;
+	triangle.setPointCount(3);
+	triangle.setPoint(0, sf::Vector2f(100,0));
+	triangle.setPoint(1, sf::Vector2f(100,100));
+	triangle.setPoint(2, sf::Vector2f(0,100));
+	triangle.setFillColor(sf::Color::Green);
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -30,6 +37,7 @@ int main()
 
 		window.draw(circleShape);
 		window.draw(rectShape);
+		window.draw(triangle);
 
 			//render objects
 			window.display();
