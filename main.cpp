@@ -19,6 +19,17 @@ int main()
 	float rectWidth = static_cast<float>(textureSize.x);
 	float rectHeight = static_cast<float>(textureSize.y);
 
+	sf::ConvexShape shape(5);
+	shape.setPoint(0, sf::Vector2f(0,0));
+	shape.setPoint(1, sf::Vector2f(200,0));
+	shape.setPoint(2, sf::Vector2f(180,120));
+	shape.setPoint(3, sf::Vector2f(100,200));
+	shape.setPoint(4, sf::Vector2f(20,120));
+	shape.setTexture(&texture);
+	shape.setOutlineThickness(2);
+	shape.setOutlineColor(sf::Color::Blue);
+	shape.move(20,20);
+
 	sf::Vector2f startPos = sf::Vector2f(50, 50);
 	sf::RectangleShape playerRect(sf::Vector2f(rectWidth, rectHeight));
 	//initShape(playerRect, startPos, sf::Color::Green);
@@ -69,6 +80,7 @@ int main()
 		window.draw(playerRect);
 		window.draw(badRect);
 		window.draw(targetRect);
+		window.draw(shape);
 		//window.draw(triangle);
 
 			//render objects
