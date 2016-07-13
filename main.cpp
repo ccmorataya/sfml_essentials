@@ -15,8 +15,12 @@ int main()
 	sf::Texture texture;
 	texture.loadFromFile("texture.png");
 
+	sf::Vector2u textureSize = texture.getSize();
+	float rectWidth = static_cast<float>(textureSize.x);
+	float rectHeight = static_cast<float>(textureSize.y);
+
 	sf::Vector2f startPos = sf::Vector2f(50, 50);
-	sf::RectangleShape playerRect(sf::Vector2f(50, 50));
+	sf::RectangleShape playerRect(sf::Vector2f(rectWidth, rectHeight));
 	//initShape(playerRect, startPos, sf::Color::Green);
 	playerRect.setTexture(&texture);
 
