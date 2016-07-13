@@ -12,9 +12,13 @@ int main()
 	sf::RenderWindow window (sf::VideoMode(480, 180), "Squares");
 	window.setFramerateLimit(60);
 
+	sf::Texture texture;
+	texture.loadFromFile("texture.png");
+
 	sf::Vector2f startPos = sf::Vector2f(50, 50);
 	sf::RectangleShape playerRect(sf::Vector2f(50, 50));
-	initShape(playerRect, startPos, sf::Color::Green);
+	//initShape(playerRect, startPos, sf::Color::Green);
+	playerRect.setTexture(&texture);
 
 	sf::RectangleShape targetRect(sf::Vector2f(50, 50));
 	initShape(targetRect, sf::Vector2f(400,50), sf::Color::Blue);
